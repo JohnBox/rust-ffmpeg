@@ -159,17 +159,25 @@ impl<'a> Iterator for PacketIter<'a> {
         let mut packet = Packet::empty();
 
         loop {
+            eprintln!("read again");
             match packet.read(self.context) {
                 Ok(..) => unsafe {
+                    eprintln!("read ok");
                     return Some((
                         Stream::wrap(mem::transmute_copy(&self.context), packet.stream()),
                         packet,
                     ));
                 },
 
-                Err(Error::Eof) => return None,
+                Err(Error::Eof) => {
+                    eprintln!("read eof");
+                    return None
+                },
 
-                Err(..) => (),
+                Err(e) => {
+                    eprintln!("unknown error {}", e);
+                    ()
+                },
             }
         }
     }

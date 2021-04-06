@@ -204,8 +204,14 @@ impl Packet {
     pub fn read(&mut self, format: &mut format::context::Input) -> Result<(), Error> {
         unsafe {
             match av_read_frame(format.as_mut_ptr(), self.as_mut_ptr()) {
-                0 => Ok(()),
-                e => Err(Error::from(e)),
+                0 => {
+                    eprintln!("eeeeeeeeeeeeeeeeeeeee 0");
+                    Ok(())
+                },
+                e => {
+                    eprintln!("eeeeeeeeeeeeeeeeeeeee {}", e);
+                    Err(Error::from(e))
+                }
             }
         }
     }
