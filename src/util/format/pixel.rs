@@ -407,6 +407,8 @@ impl From<AVPixelFormat> for Pixel {
         match value {
             AV_PIX_FMT_NONE => Pixel::None,
 
+            AV_PIX_FMT_X2RGB10LE => Pixel::None,
+            AV_PIX_FMT_X2RGB10BE => Pixel::None,
             AV_PIX_FMT_YUV420P => Pixel::YUV420P,
             AV_PIX_FMT_YUYV422 => Pixel::YUYV422,
             AV_PIX_FMT_RGB24 => Pixel::RGB24,

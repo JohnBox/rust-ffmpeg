@@ -58,6 +58,7 @@ impl From<AVFrameSideDataType> for Type {
     #[inline(always)]
     fn from(value: AVFrameSideDataType) -> Self {
         match value {
+            AV_FRAME_DATA_FILM_GRAIN_PARAMS => Type::PanScan,
             AV_FRAME_DATA_PANSCAN => Type::PanScan,
             AV_FRAME_DATA_A53_CC => Type::A53CC,
             AV_FRAME_DATA_STEREO3D => Type::Stereo3D,
